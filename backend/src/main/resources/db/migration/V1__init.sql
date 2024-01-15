@@ -31,8 +31,10 @@ create table users(
     last_name varchar(255),
 	role_id int2 not null,
 	active bool default true,
-	date_added timestamp default now(),
-	date_modified timestamp default now(),
+    created_ts timestamp not null default now(),
+    updated_ts timestamp not null default now(),
+    created_by varchar(255) not null default 'system',
+    updated_by varchar(255) not null default 'system',
 	constraint ux_users_email unique(email),
 	constraint fk_users_role_id foreign key(role_id) references roles(id)
 );
